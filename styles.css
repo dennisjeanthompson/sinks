@@ -1,35 +1,116 @@
-/* Outdated CSS */
+/* Modernized CSS */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "sidebar main"
+        "footer footer";
+    grid-template-columns: 20% 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
 }
 
-h1 {
+header {
+    grid-area: header;
+    background-color: #cccccc;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
     margin: 0;
 }
 
-ul {
-    margin: 0;
+nav.sidebar {
+    grid-area: sidebar;
+    background-color: #333333;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+nav.sidebar ul {
+    list-style-type: none;
     padding: 0;
 }
 
-li {
-    margin: 0;
-    padding: 0;
+nav.sidebar ul li {
+    margin: 15px 0;
 }
 
-p {
-    margin: 0;
-    padding: 0;
+nav.sidebar ul li a {
+    color: white;
+    text-decoration: none;
 }
 
-img {
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.sink-info, .sink-features {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.sink-info img, .sink-features img {
     width: 100%;
     height: auto;
+    margin-bottom: 10px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+footer {
+    grid-area: footer;
+    background-color: #cccccc;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsive Design: Mobile First Approach */
+@media (max-width: 768px) {
+    body {
+        grid-template-areas: 
+            "header"
+            "main"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+    nav.sidebar {
+        display: none; /* Hide sidebar for smaller screens */
+    }
+    header {
+        padding: 15px;
+    }
+    main {
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
+        gap: 10px;
+        padding: 15px;
+    }
+    .sink-info, .sink-features {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+    footer {
+        padding: 15px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem; /* Make header text smaller on small screens */
+    }
+    .sink-info h2, .sink-features h2 {
+        font-size: 1.25rem; /* Smaller font sizes for headings */
+    }
+    p {
+        font-size: 1rem; /* Ensure text remains readable */
+    }
 }
